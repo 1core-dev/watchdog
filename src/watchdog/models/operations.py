@@ -7,17 +7,27 @@ from pydantic import BaseModel
 
 
 class OperationKind(str, Enum):
-    INCOME = 'income'
-    OUTCOME = 'outcome'
+    DEPOSIT = 'deposit'
+    WITHDRAW = 'withdraw'
 
 
-class Operation(BaseModel):
-    id: int
+class OperationBase(BaseModel):
     date: date
     kind: OperationKind
     amount: Decimal
     description: Optional[str]
 
+
+class Operation(OperationBase):
+    id: int
+
     class Config:
         orm_mode = True
 
+
+class OperationCreate(OperationBase):
+    pass
+
+
+class OperationUpdate(OperationBase):
+    pass
