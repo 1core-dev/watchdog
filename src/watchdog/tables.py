@@ -11,3 +11,7 @@ class Operation(Base):
     date = sa.Column(sa.Date)
     kind = sa.Column(sa.String)
     amount = sa.Column(sa.Numeric(8, 2))
+    description = sa.Column(sa.String, nullable=True)
+
+    class Config:
+        orm_mode = True
