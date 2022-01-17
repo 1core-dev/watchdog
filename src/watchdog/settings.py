@@ -1,12 +1,13 @@
 from pydantic import BaseSettings
-from dotenv import dotenv_values
 
 
 class Settings(BaseSettings):
     server_host: str = '127.0.0.1'
     server_port: int = 5000
     db_url: str = 'sqlite:///./wd_db.sqlite3'
-    # db_url: str = 'postgresql+psycopg2://user:password@localhost/db_test'
+
+    jwt_secret: str
+    jwt_algorithm: str = 'HS256'
 
 
 settings = Settings(
