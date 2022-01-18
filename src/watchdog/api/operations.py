@@ -8,7 +8,8 @@ from ..services.auth import get_current_user
 from ..services.operations import OperationsService
 
 router = APIRouter(
-    prefix='/operations'
+    prefix='/operations',
+    tags=['Operations']
 )
 
 

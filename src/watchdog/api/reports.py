@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from fastapi import APIRouter, UploadFile, File, Depends
+from fastapi import APIRouter, UploadFile, File, Depends, BackgroundTasks
 from fastapi.responses import StreamingResponse
 
 from ..models.auth import User
@@ -9,18 +9,22 @@ from ..services.reports import ReportsService
 
 router = APIRouter(
     prefix='/reports',
+    tags=['Reports']
 )
 
 
 @router.post('/import')
 def import_csv(
+        background_task: BackgroundTasks,
         file: UploadFile = File(...),
         user: User = Depends(get_current_user),
         reports_service: ReportsService = Depends()
 ):
-    return reports_service.import_csv(
+    background_task.add_task(
+        reports_service.import_csv,
         user.id,
         file.file
+
     )
 
 
