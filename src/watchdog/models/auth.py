@@ -17,6 +17,6 @@ class User(BaseUser):
         orm_mode = True
 
 
-class Token(BaseUser):
+class Token(BaseModel):
     access_token: str
     token_type: str = 'bearer'

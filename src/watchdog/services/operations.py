@@ -4,7 +4,6 @@ from fastapi import Depends, HTTPException, status
 from sqlalchemy.orm import Session
 
 from .. import tables
-
 from ..db import get_session
 from ..models.operations import OperationKind, OperationCreate, OperationUpdate
 
